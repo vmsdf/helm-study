@@ -67,13 +67,21 @@ persistence:
     - ReadWriteOnce
   size: 1Gi
 
-configMap:
-  path: /home/project/conf
-  data:
-    arquivo.conf: |-
-      env=Jackexperts
-      aula-helm
-      blablabla...
+volumes:
+- name: script
+  configMap:
+    defaultMode: 0777
+    name: script
+    optional: false
+- name: volume-theia
+  persistentVolumeClaim:
+      claimName: volume-theia
+
+volumeMounts:
+- mountPath: /home/project/scripts
+  name: script
+- mountPath: /home/project
+  name: volume-theia
 
 ingress:
   enabled: false
