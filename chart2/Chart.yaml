@@ -1,5 +1,5 @@
 apiVersion: v2
-name: theia
+name: theia-vms
 description: Chart Theia - IDE
 
 # A chart can be either an 'application' or a 'library' chart.
