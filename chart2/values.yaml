@@ -14,6 +14,15 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+configMap:
+  enabled: true
+  name: script
+  data:
+    listar.sh: |-
+      #!/bin/bash
+      ls -ltra
+      echo "acabei de listar"
+
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
@@ -50,6 +59,13 @@ readinessProbe:
   httpGet:
     path: /
     port: http
+
+persistence:
+  name: "volume-theia"
+  enabled: true
+  accessModes:
+    - ReadWriteOnce
+  size: 1Gi
 
 configMap:
   path: /home/project/conf
